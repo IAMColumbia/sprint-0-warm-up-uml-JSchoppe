@@ -1,17 +1,12 @@
-﻿using System;
-using static System.Console;
+﻿using static System.Console;
 
 namespace Sprint_0_Warm_Up
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
-        {
-            Tester t = new Tester();
-            t.Test();
-        }
+        public static void Main() { new Tester().Test(); }
 
-        class Tester
+        private sealed class Tester
         {
             public void Test()
             {
@@ -31,7 +26,7 @@ namespace Sprint_0_Warm_Up
                  * OOPFlyingVehicleMidterm.Airplane engine is not started
                  */
 
-                WriteLine("\nAireplaneTakeOffTests...............................................................");
+                WriteLine("\nAirplaneTakeOffTests...............................................................");
                 WriteLine("\nCall ap.TakeOff():");
                 //Test take off should fail engine isn't started
                 WriteLine(ap.TakeOff());  //Don't take off engine isn't started
@@ -72,4 +67,3 @@ namespace Sprint_0_Warm_Up
         }
     }
 }
-

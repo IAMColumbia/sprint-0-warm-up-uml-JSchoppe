@@ -4,43 +4,55 @@ namespace Sprint_0_Warm_Up
 {
     public abstract class AerialVehicle
     {
-        public int CurrentAltitude { get; set; }
-
-        Engine Engine { get; set; }
+        private const int DEFAULT_FLY_HEIGHT = 1000;
+        protected const string ELEVATION_UNIT = "ft";
 
         public AerialVehicle()
         {
-
+            Engine = new Engine();
+            CurrentAltitude = 0;
+            IsFlying = false;
         }
 
-        public bool About()
+        public Engine Engine { get; set; }
+        public int CurrentAltitude { get; set; }
+        public bool IsFlying { get; protected set; }
+        public int MaxAltitude { get; set; }
+
+        public virtual void StartEngine() { Engine.Start(); }
+        public virtual void StopEngine() { Engine.Stop(); }
+
+        public virtual string TakeOff()
         {
-            throw new NotImplementedException();
+            if (Engine.IsStarted && !IsFlying)
+                IsFlying = true;
+            return IsFlying ? $"{this} is flying." : $"{this} can't fly it's engine is not started.";
         }
 
-        public bool TakeOff()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void StartEngine()
-        {
-            throw new NotImplementedException();
-        }
-
+        public void FlyDown() { FlyDown(DEFAULT_FLY_HEIGHT); }
         public void FlyDown(int howMuch)
         {
-            throw new NotImplementedException();
+            int newAltitude = CurrentAltitude - howMuch;
+            if (newAltitude >= 0)
+                CurrentAltitude = newAltitude;
         }
 
-        internal void FlyUp()
+        public void FlyUp() { FlyUp(DEFAULT_FLY_HEIGHT); }
+        public void FlyUp(int howMuch)
         {
-            throw new NotImplementedException();
+            int newAltitude = CurrentAltitude + howMuch;
+            // 0 is a sentinel value for no max altitude.
+            if (MaxAltitude == 0 || newAltitude <= MaxAltitude)
+                CurrentAltitude = newAltitude;
         }
 
-        internal void FlyUp(int HowMuch)
+        public virtual string About()
         {
-            throw new NotImplementedException();
+            return $"This {this} has a max altitude of {MaxAltitude} {ELEVATION_UNIT}." +
+                Environment.NewLine +
+                $"It's current altitude is {CurrentAltitude} {ELEVATION_UNIT}." +
+                Environment.NewLine +
+                Engine.About();
         }
     }
 }
