@@ -1,6 +1,6 @@
 ﻿namespace Sprint_0_Warm_Up
 {
-    public class Engine
+    public sealed class Engine
     {
         public Engine()
         {
@@ -9,8 +9,14 @@
 
         public bool IsStarted { get; private set; }
 
-        public void Start() { IsStarted = true; }
-        public void Stop() { IsStarted = false; }
+        public void Start()
+        {
+            IsStarted = true;
+        }
+        public void Stop()
+        {
+            IsStarted = false;
+        }
         public string About()
         {
             return $"{this} is {(IsStarted ? "started" : "not started")}.";

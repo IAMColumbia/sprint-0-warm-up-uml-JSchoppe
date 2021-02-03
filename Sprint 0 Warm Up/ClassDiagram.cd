@@ -1,31 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Sprint_0_Warm_Up.AerialVehicle">
-    <Position X="6" Y="0.5" Width="3.25" />
+    <Position X="6" Y="0.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AACAAIAACIAAAAEAgAAIAgAAAAAAAEAABAAAQAAIAAA=</HashCode>
       <FileName>AerialVehicle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Sprint_0_Warm_Up.Airplane">
-    <Position X="6" Y="4.75" Width="3.25" />
+    <Position X="6" Y="5.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Airplane.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Sprint_0_Warm_Up.Engine">
-    <Position X="9.5" Y="0.75" Width="2.25" />
+    <Position X="9" Y="1" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAEAAAAAAAAAAABAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Sprint_0_Warm_Up.ToyPlane">
-    <Position X="6" Y="6.75" Width="3.25" />
+    <Position X="6" Y="7.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AACAAIAAAAAAAAEAAAgAAAAAAAAAAAAAACEEAAAAAAA=</HashCode>
       <FileName>ToyPlane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprint_0_Warm_Up.Airport">
+    <Position X="2.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACAAACAAAAAAAAAAAAAAAAAACAAAAAAAgAAAgAEAAA=</HashCode>
+      <FileName>Airport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprint_0_Warm_Up.Helicopter">
+    <Position X="9" Y="5.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helicopter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprint_0_Warm_Up.Drone">
+    <Position X="12" Y="5.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Drone.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -19,14 +19,24 @@ namespace Sprint_0_Warm_Up
         public bool IsFlying { get; protected set; }
         public int MaxAltitude { get; set; }
 
-        public virtual void StartEngine() { Engine.Start(); }
-        public virtual void StopEngine() { Engine.Stop(); }
+        public virtual void StartEngine()
+        {
+            Engine.Start();
+        }
+        public virtual void StopEngine()
+        {
+            if (CurrentAltitude == 0)
+            {
+                Engine.Stop();
+                IsFlying = false;
+            }
+        }
 
         public virtual string TakeOff()
         {
             if (Engine.IsStarted && !IsFlying)
                 IsFlying = true;
-            return IsFlying ? $"{this} is flying." : $"{this} can't fly it's engine is not started.";
+            return IsFlying ? $"{this} is flying." : $"{this} can't take off. Its engine hasn't started.";
         }
 
         public void FlyDown() { FlyDown(DEFAULT_FLY_HEIGHT); }
@@ -50,7 +60,7 @@ namespace Sprint_0_Warm_Up
         {
             return $"This {this} has a max altitude of {MaxAltitude} {ELEVATION_UNIT}." +
                 Environment.NewLine +
-                $"It's current altitude is {CurrentAltitude} {ELEVATION_UNIT}." +
+                $"Its current altitude is {CurrentAltitude} {ELEVATION_UNIT}." +
                 Environment.NewLine +
                 Engine.About();
         }
