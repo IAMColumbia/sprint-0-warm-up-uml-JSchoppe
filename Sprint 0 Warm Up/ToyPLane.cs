@@ -11,6 +11,7 @@ namespace Sprint_0_Warm_Up
         public ToyPlane()
         {
             MaxAltitude = TOY_PLANE_MAX_ALTITUDE;
+            isWoundUp = false;
         }
 
         public override void StartEngine()

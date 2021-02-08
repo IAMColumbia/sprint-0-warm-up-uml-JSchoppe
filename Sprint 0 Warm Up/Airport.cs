@@ -60,6 +60,9 @@ namespace Sprint_0_Warm_Up
                 aerialVehicle.FlyDown(aerialVehicle.CurrentAltitude);
                 aerialVehicle.StopEngine();
                 if (aerialVehicle.IsFlying)
+                    // This line is literally untestable because it
+                    // implements a case that doesn't yet exist in
+                    // any subclass of AerialVehicle.
                     return $"{aerialVehicle} was not able to land.";
                 else
                 {

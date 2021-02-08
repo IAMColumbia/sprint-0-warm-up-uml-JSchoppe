@@ -9,109 +9,86 @@ namespace UnitTestFlyingVehicle
     {
         private Airplane airplane;
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public Airplane Airplane
-        {
-            get
-            {
-                return airplane;
-            }
-            set
-            {
-                airplane = value;
-            }
-        }
-
-        public AirplaneTests()
-        {
-            Airplane = new Airplane();
-        }
-
         [TestMethod]
-        public void AirplaneAbout()
+        public void About()
         {
-            //Arrange 
-            Airplane ap = this.Airplane;
-            //Act
-
-            //Assert
+            // Confirm about message formatting.
+            // Arrange.
+            airplane = new Airplane();
+            // Act.
+            string about = airplane.About();
+            // Assert.
             Assert.AreEqual(
-                $"This {ap.ToString()} has a max altitude of 41000 ft.{Environment.NewLine}It's current altitude is 0 ft.{Environment.NewLine}{ap.Engine.ToString()} is not started.",
-                ap.About());
+                $"This {airplane} has a max altitude of 41000 ft." +
+                $"{Environment.NewLine}Its current altitude is 0 ft." +
+                $"{Environment.NewLine}{airplane.Engine} is not started.",
+                about);
         }
 
         [TestMethod]
-        public void AireplaneTakeOff()
+        public void AirplaneTakeoff()
         {
-            //Arrange 
-            Airplane ap = this.Airplane;
-            
-            //act
-            string firstTakeoff = ap.TakeOff();
-            bool engineBeforeStart = ap.Engine.IsStarted;
-            ap.StartEngine();
-            string secondTakeOff = ap.TakeOff();
+            // Airplane should not take off if its engine is not started.
+            // Arrange.
+            airplane = new Airplane();
+            // Act.
+            string message = airplane.TakeOff();
+            // Assert.
+            Assert.AreEqual($"{airplane} can't take off. Its engine hasn't started.", message);
 
-            //Assert
-            Assert.AreEqual(ap.ToString() + " can't fly it's engine is not started.", firstTakeoff);
-            Assert.AreEqual(ap.ToString() + " is flying.", secondTakeOff);
-            Assert.AreEqual(false, engineBeforeStart);
-            Assert.AreEqual(true, ap.Engine.IsStarted);
+            // This is the moment I stopped formatting these tests
+            // because it is very boring.
+            bool engineStartedDefault = airplane.Engine.IsStarted;
+            airplane.StartEngine();
+            string secondTakeoffMessage = airplane.TakeOff();
+            bool engineStartedAfterTakeoff = airplane.Engine.IsStarted;
+            Assert.AreEqual($"{airplane} is flying.", secondTakeoffMessage);
+            Assert.AreEqual(false, engineStartedDefault);
+            Assert.AreEqual(true, engineStartedAfterTakeoff);
         }
 
         [TestMethod]
-        public void AirpnAireplaneFlyUp()
+        public void AirplaneFlyUp()
         {
-            //Arrange 
-            Airplane ap = this.Airplane;
-
-            //act
-            ap.StartEngine();
-            string firstTakeoff = ap.TakeOff();
-            int defaultHeight = ap.CurrentAltitude;
-            ap.FlyUp();
-            int firstAlt = ap.CurrentAltitude;
-            ap.FlyUp(40000);
-            int secondAlt = ap.CurrentAltitude;
-            //Assert
-            Assert.AreEqual(0, defaultHeight);
-            Assert.AreEqual(1000, firstAlt);
-            Assert.AreEqual(41000, secondAlt);
-
+            // Arrange.
+            airplane = new Airplane();
+            airplane.StartEngine();
+            airplane.TakeOff();
+            // Act.
+            int altitude0 = airplane.CurrentAltitude;
+            airplane.FlyUp();
+            int altitude1 = airplane.CurrentAltitude;
+            airplane.FlyUp(40000);
+            int altitude2 = airplane.CurrentAltitude;
+            // Assert.
+            Assert.AreEqual(0, altitude0);
+            Assert.AreEqual(1000, altitude1);
+            Assert.AreEqual(41000, altitude2);
         }
 
         [TestMethod]
-        public void AireplaneFlyDown()
+        public void AirplaneFlyDown()
         {
-            //Arrange 
-            Airplane ap = this.Airplane;
-
-            //act
-            ap.StartEngine();
-            string firstTakeoff = ap.TakeOff();
-            int defaultHeight = ap.CurrentAltitude;
-            ap.FlyDown();
-            //test is flying again
-            int FlyDown = ap.CurrentAltitude;
-            ap.TakeOff();
-            ap.FlyDown(1);
-            //test is flying again
-            ap.TakeOff();
-            int FlyDownOneAlreadyZero = ap.CurrentAltitude;
-            ap.FlyUp(2);
-            ap.FlyDown(1);
-            int FlyDownOneAtTwo = ap.CurrentAltitude;
-
-            //Assert
-            Assert.AreEqual(0, defaultHeight);
-            Assert.AreEqual(0, FlyDown);
-            //Assert.AreEqual(FlyDownOneAlreadyZero, 0);
-            Assert.AreEqual(1, FlyDownOneAtTwo);
-
-
+            // Arrange.
+            airplane = new Airplane();
+            airplane.StartEngine();
+            airplane.TakeOff();
+            // Act.
+            int altitude0 = airplane.CurrentAltitude;
+            airplane.FlyDown();
+            int altitude1 = airplane.CurrentAltitude;
+            airplane.TakeOff();
+            airplane.FlyDown(1);
+            airplane.TakeOff();
+            int altitude2 = airplane.CurrentAltitude;
+            airplane.FlyUp(2);
+            airplane.FlyDown(1);
+            int altitude3 = airplane.CurrentAltitude;
+            // Assert.
+            Assert.AreEqual(0, altitude0);
+            Assert.AreEqual(0, altitude2);
+            Assert.AreEqual(0, altitude1);
+            Assert.AreEqual(1, altitude3);
         }
     }
 }

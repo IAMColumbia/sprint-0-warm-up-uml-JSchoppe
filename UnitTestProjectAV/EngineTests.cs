@@ -1,44 +1,63 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sprint_0_Warm_Up;
 
 namespace UnitTestFlyingVehicle
 {
     [TestClass]
-    public class EngineTests
+    public sealed class EngineTests
     {
+        private Engine engine;
+
         [TestMethod]
-        public void EngineIsStarted()
+        public void IsStarted()
         {
-            //Arrange
-            Engine e = new Engine();
-            //Act 
-            bool defaultEngineStarted = e.IsStarted;
-            e.Start();
-            bool startEngineStarted = e.IsStarted;
-            e.Stop();
-            bool stopEngineStarted = e.IsStarted;
-            //Assert
-            Assert.AreEqual(false, defaultEngineStarted);
-            Assert.AreEqual(true, startEngineStarted);
-            Assert.AreEqual(false, stopEngineStarted);
+            // Default state should be not started.
+            // Arrange.
+            engine = new Engine();
+            // Act.
+            bool isStarted = engine.IsStarted;
+            // Assert.
+            Assert.AreEqual(false, isStarted);
+
+            // Start method should start engine.
+            // Arrange.
+            engine = new Engine();
+            // Act.
+            engine.Start();
+            isStarted = engine.IsStarted;
+            // Assert.
+            Assert.AreEqual(true, isStarted);
+
+            // Stop should remove started state.
+            // Arrange.
+            engine = new Engine();
+            // Act.
+            engine.Start();
+            engine.Stop();
+            isStarted = engine.IsStarted;
+            // Assert.
+            Assert.AreEqual(false, isStarted);
         }
 
         [TestMethod]
-        public void EngineAbout()
+        public void About()
         {
-            //Arrange
-            Engine e = new Engine();
-            //Act 
-            string defaultEngineAbout = e.About();
-            e.Start();
-            string startedAbout = e.About();
-            e.Stop();
-            string stoppedAbout = e.About();
-            //Assert
-            Assert.AreEqual($"{e.ToString()} is not started.", defaultEngineAbout);
-            Assert.AreEqual($"{e.ToString()} is started.", startedAbout);
-            Assert.AreEqual($"{e.ToString()} is not started.", stoppedAbout);
+            // About not started formatting check.
+            // Arrange.
+            engine = new Engine();
+            // Act.
+            string about = engine.About();
+            // Assert.
+            Assert.AreEqual($"{engine} is not started.", about);
+
+            // About started formatting check.
+            // Arrange.
+            engine = new Engine();
+            engine.Start();
+            // Act.
+            about = engine.About();
+            // Assert.
+            Assert.AreEqual($"{engine} is started.", about);
         }
     }
 }
