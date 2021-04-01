@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sprint_0_Warm_Up;
+using Sprint_0_Warm_Up.AerialVehicles;
+using Sprint_0_Warm_Up.Engines;
 
 namespace UnitTestFlyingVehicle
 {
@@ -18,7 +19,7 @@ namespace UnitTestFlyingVehicle
         public void AerialVehicleEngineTests()
         {
             //Arrange
-            Airplane ap = new Airplane();
+            Airplane ap = new Airplane(new Engine());
             //Act 
             bool defaultEngine = ap.Engine.IsStarted;  //default should be off
             ap.StartEngine();

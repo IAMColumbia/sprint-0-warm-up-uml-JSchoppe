@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sprint_0_Warm_Up;
+using Sprint_0_Warm_Up.AerialVehicles;
+using Sprint_0_Warm_Up.Engines;
 
 namespace UnitTestFlyingVehicle
 {
@@ -33,9 +35,9 @@ namespace UnitTestFlyingVehicle
             // Airport should not allow landing at full capacity.
             // Arrange.
             airport = new Airport(string.Empty, 1);
-            airport.Land(new Helicopter());
+            airport.Land(new Helicopter(new Engine()));
             // Act.
-            Airplane airplane = new Airplane();
+            Airplane airplane = new Airplane(new Engine());
             string message = airport.Land(airplane);
             // Assert.
             Assert.AreEqual($"{airplane} can't land because the airport is full.", message);
@@ -89,10 +91,10 @@ namespace UnitTestFlyingVehicle
             // Arrange.
             airport = new Airport(string.Empty, 10);
             // Act.
-            airport.Land(new Airplane());
+            airport.Land(new Airplane(new Engine()));
             airport.Land(new AerialVehicle[]
             {
-                new Helicopter(), new Drone()
+                new Helicopter(new Engine()), new Drone(new Engine())
             });
             message = airport.AllTakeOff();
             // Assert.
@@ -101,10 +103,10 @@ namespace UnitTestFlyingVehicle
             // Vehicles not at the airport should not be able to take off.
             // Arrange.
             airport = new Airport(string.Empty, 10);
-            Drone drone = new Drone();
+            Drone drone = new Drone(new Engine());
             airport.Land(new AerialVehicle[]
             {
-                new Helicopter(), new Drone()
+                new Helicopter(new Engine()), new Drone(new Engine())
             });
             // Act.
             message = airport.TakeOff(drone);
@@ -113,11 +115,11 @@ namespace UnitTestFlyingVehicle
             // Vehicles at the airport should be able to take off.
             // Arrange.
             airport = new Airport(string.Empty, 10);
-            drone = new Drone();
+            drone = new Drone(new Engine());
             // Act.
             airport.Land(new AerialVehicle[]
             {
-                new Helicopter(), drone, new Drone()
+                new Helicopter(new Engine()), drone, new Drone(new Engine())
             });
             message = airport.TakeOff(drone);
             // Assert.

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sprint_0_Warm_Up;
+using Sprint_0_Warm_Up.AerialVehicles;
+using Sprint_0_Warm_Up.Engines;
 
 namespace UnitTestFlyingVehicle
 {
@@ -14,7 +15,7 @@ namespace UnitTestFlyingVehicle
         {
             // Confirm about message formatting.
             // Arrange.
-            airplane = new Airplane();
+            airplane = new Airplane(new Engine());
             // Act.
             string about = airplane.About();
             // Assert.
@@ -30,7 +31,7 @@ namespace UnitTestFlyingVehicle
         {
             // Airplane should not take off if its engine is not started.
             // Arrange.
-            airplane = new Airplane();
+            airplane = new Airplane(new Engine());
             // Act.
             string message = airplane.TakeOff();
             // Assert.
@@ -51,7 +52,7 @@ namespace UnitTestFlyingVehicle
         public void AirplaneFlyUp()
         {
             // Arrange.
-            airplane = new Airplane();
+            airplane = new Airplane(new Engine());
             airplane.StartEngine();
             airplane.TakeOff();
             // Act.
@@ -70,7 +71,7 @@ namespace UnitTestFlyingVehicle
         public void AirplaneFlyDown()
         {
             // Arrange.
-            airplane = new Airplane();
+            airplane = new Airplane(new Engine());
             airplane.StartEngine();
             airplane.TakeOff();
             // Act.

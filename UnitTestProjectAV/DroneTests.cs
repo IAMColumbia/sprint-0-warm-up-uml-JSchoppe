@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sprint_0_Warm_Up;
+using Sprint_0_Warm_Up.AerialVehicles;
+using Sprint_0_Warm_Up.Engines;
 
 namespace UnitTestFlyingVehicle
 {
@@ -13,7 +14,7 @@ namespace UnitTestFlyingVehicle
         {
             // Drone should cap altitude to 500.
             // Arrange.
-            drone = new Drone();
+            drone = new Drone(new Engine());
             // Act.
             int maxAltitude = drone.MaxAltitude;
             // Assert.

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sprint_0_Warm_Up;
+using Sprint_0_Warm_Up.AerialVehicles;
+using Sprint_0_Warm_Up.Engines;
 
 namespace UnitTestFlyingVehicle
 {
@@ -13,7 +14,7 @@ namespace UnitTestFlyingVehicle
         {
             // Max altitude should be capped at 8000.
             // Arrange.
-            helicopter = new Helicopter();
+            helicopter = new Helicopter(new Engine());
             // Act.
             int maxAltitude = helicopter.MaxAltitude;
             // Assert.

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sprint_0_Warm_Up;
+using Sprint_0_Warm_Up.AerialVehicles;
+using Sprint_0_Warm_Up.Engines;
 
 namespace UnitTestFlyingVehicle
 {
@@ -16,7 +17,7 @@ namespace UnitTestFlyingVehicle
             // altitude and intializes engine and
             // flight state to false.
             // Arrange.
-            toyPlane = new ToyPlane();
+            toyPlane = new ToyPlane(new Engine());
             // Act.
             int maxAltitude = toyPlane.MaxAltitude;
             // Assert.
@@ -31,7 +32,7 @@ namespace UnitTestFlyingVehicle
             // Engine should not start when the
             // toy plane is in unwound state.
             // Arrange.
-            toyPlane = new ToyPlane();
+            toyPlane = new ToyPlane(new Engine());
             // Act.
             toyPlane.StartEngine();
             bool engineStarted = toyPlane.Engine.IsStarted;
@@ -41,7 +42,7 @@ namespace UnitTestFlyingVehicle
             // Engine should start when the toy
             // plane is in the wound up state.
             // Arrange.
-            toyPlane = new ToyPlane();
+            toyPlane = new ToyPlane(new Engine());
             toyPlane.WindUp();
             // Act.
             toyPlane.StartEngine();
@@ -52,7 +53,7 @@ namespace UnitTestFlyingVehicle
             // If the plane is unwound again, the engine
             // should not start.
             // Arrange.
-            toyPlane = new ToyPlane();
+            toyPlane = new ToyPlane(new Engine());
             toyPlane.WindUp();
             toyPlane.UnWind();
             // Act.
@@ -68,7 +69,7 @@ namespace UnitTestFlyingVehicle
             // Should not take off when the plane
             // is unwound.
             // Arrange.
-            toyPlane = new ToyPlane();
+            toyPlane = new ToyPlane(new Engine());
             toyPlane.StartEngine();
             // Act.
             string message = toyPlane.TakeOff();
@@ -77,7 +78,7 @@ namespace UnitTestFlyingVehicle
 
             // Should take off if wound up.
             // Arrange.
-            toyPlane = new ToyPlane();
+            toyPlane = new ToyPlane(new Engine());
             toyPlane.WindUp();
             toyPlane.StartEngine();
             // Act.
@@ -92,7 +93,7 @@ namespace UnitTestFlyingVehicle
             // The toy plane, unwound by default should state in its
             // final about string that it is unwound.
             // Arrange.
-            toyPlane = new ToyPlane();
+            toyPlane = new ToyPlane(new Engine());
             // Act.
             string[] messages = toyPlane.About().Split(Environment.NewLine);
             // Assert.
@@ -100,7 +101,7 @@ namespace UnitTestFlyingVehicle
 
             // Final about message should reflect wound state.
             // Arrange.
-            toyPlane = new ToyPlane();
+            toyPlane = new ToyPlane(new Engine());
             // Act.
             toyPlane.WindUp();
             messages = toyPlane.About().Split(Environment.NewLine);
